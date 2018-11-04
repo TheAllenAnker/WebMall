@@ -161,32 +161,32 @@
 
 </body>
 <script>
-    $(function () {
-        //页面加载完毕为id为username文本框绑定失去焦点事件
-        $("#username").blur(function () {
-            //获取到用户输入的信息
-            var val = $(this).val();
-            //alert(val);
-            var vv = $.trim(val);
-            if (vv != "") {
-                //发送Ajax
-                $.post("${pageContext.request.contextPath}/UserServlet", {
-                    "username": vv,
-                    "method": "userExists"
-                }, function (dt) {
-                    //alert(dt);
-                    if (dt == "11") {
-                        $("#username_span").html("用户已经存在");
-                        $("#username_span").css("color", "red");
-                    } else {
-                        $("#username_span").html("用户可以注册");
-                        $("#username_span").css("color", "green");
-                    }
+    <%--$(function () {--%>
+        <%--//页面加载完毕为id为username文本框绑定失去焦点事件--%>
+        <%--$("#username").blur(function () {--%>
+            <%--//获取到用户输入的信息--%>
+            <%--var val = $(this).val();--%>
+            <%--//alert(val);--%>
+            <%--var vv = $.trim(val);--%>
+            <%--if (vv != "") {--%>
+                <%--//发送Ajax--%>
+                <%--$.post("${pageContext.request.contextPath}/UserServlet", {--%>
+                    <%--"username": vv,--%>
+                    <%--"method": "userExists"--%>
+                <%--}, function (dt) {--%>
+                    <%--//alert(dt);--%>
+                    <%--if (dt == "11") {--%>
+                        <%--$("#username_span").html("用户已经存在");--%>
+                        <%--$("#username_span").css("color", "red");--%>
+                    <%--} else {--%>
+                        <%--$("#username_span").html("用户可以注册");--%>
+                        <%--$("#username_span").css("color", "green");--%>
+                    <%--}--%>
 
-                });
-            }
-        });
-    });
+                <%--});--%>
+            <%--}--%>
+        <%--});--%>
+    <%--});--%>
 </script>
 </html>
 
