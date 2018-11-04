@@ -34,9 +34,9 @@ public class UserServlet extends BaseServlet {
         UserService userService = new UserServiceImp();
         try {
             userService.userRegist(user);
-            request.setAttribute("meg", "Register Succeeded.");
+            request.setAttribute("msg", "Register Succeeded.");
         } catch (Exception e) {
-            request.setAttribute("meg", "Register Failed.");
+            request.setAttribute("msg", "Register Failed.");
             e.printStackTrace();
         }
 
