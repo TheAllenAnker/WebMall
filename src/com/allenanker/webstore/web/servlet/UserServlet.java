@@ -69,4 +69,15 @@ public class UserServlet extends BaseServlet {
         response.sendRedirect("/webmall/index.jsp");
         return null;
     }
+
+    public String userExists(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String username = request.getParameter("username");
+        UserService service = new UserServiceImp();
+        if (service.hasUser(username)) {
+            response.getWriter().write("11");
+        } else {
+            response.getWriter().write("00");
+        }
+        return null;
+    }
 }

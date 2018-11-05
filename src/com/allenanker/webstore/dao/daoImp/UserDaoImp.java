@@ -57,4 +57,20 @@ public class UserDaoImp implements UserDao {
 
         return flag ? returnUser : null;
     }
+
+    @Override
+    public boolean hasUser(String username) throws SQLException {
+        String sql = "SELECT * FROM user WHERE username=?";
+        Connection connection = JDBCUtils.getJDBCConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet rs;
+        preparedStatement.setString(1, username);
+        rs = preparedStatement.executeQuery();
+        boolean hasUser = rs.next();
+        rs.close();
+        preparedStatement.close();
+        connection.close();
+
+        return hasUser;
+    }
 }

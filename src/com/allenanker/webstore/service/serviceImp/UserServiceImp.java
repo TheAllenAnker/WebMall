@@ -25,4 +25,10 @@ public class UserServiceImp implements UserService {
             return user;
         }
     }
+
+    @Override
+    public boolean hasUser(String username) throws Exception {
+        UserDao userDao = new UserDaoImp();
+        return userDao.hasUser(username);
+    }
 }

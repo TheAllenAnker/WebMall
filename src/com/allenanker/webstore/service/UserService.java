@@ -9,4 +9,6 @@ public interface UserService {
     void userRegist(User user) throws SQLException, ClassNotFoundException;
 
     User userLogin(User user) throws Exception;
+
+    boolean hasUser(String username) throws Exception;
 }
