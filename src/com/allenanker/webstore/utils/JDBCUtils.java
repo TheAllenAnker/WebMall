@@ -4,10 +4,13 @@ import java.sql.*;
 
 import javax.sql.DataSource;
 
+import com.allenanker.webstore.domain.User;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 public class JDBCUtils {
-    private static ComboPooledDataSource ds = new ComboPooledDataSource("webmall");
+    private static ComboPooledDataSource cpds = new ComboPooledDataSource("myDataSource");
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
     private static final String url = "jdbc:mysql://localhost:3306/store_40";
     private static final String username = "root";
@@ -31,7 +34,7 @@ public class JDBCUtils {
         //从线程中获取conneciton
         Connection conn = tl.get();
         if (conn == null) {
-            conn = ds.getConnection();
+            conn = cpds.getConnection();
             //和当前线程绑定
             tl.set(conn);
         }
@@ -40,7 +43,7 @@ public class JDBCUtils {
 
     // 获取数据源
     public static DataSource getDataSource() {
-        return ds;
+        return cpds;
     }
 
     // 释放资源
@@ -143,5 +146,11 @@ public class JDBCUtils {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        String sql = "select * from user";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+        qr.query(sql, new BeanHandler<User>(User.class));
     }
 }
