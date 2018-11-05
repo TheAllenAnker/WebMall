@@ -32,7 +32,7 @@
             </c:if>
             <c:if test="${not empty user}">
                 <li><a href="#">欢迎${user.name}</a></li>
-                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logOut">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=userLogout">退出</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
                 <li>
                     <a href="${pageContext.request.contextPath}/OrderServlet?method=findOrdersByUidWithPage&num=1">我的订单</a>

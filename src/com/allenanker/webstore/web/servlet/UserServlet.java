@@ -63,4 +63,10 @@ public class UserServlet extends BaseServlet {
             return "/jsp/login.jsp";
         }
     }
+
+    public String userLogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        request.getSession().invalidate();
+        response.sendRedirect("/webmall/index.jsp");
+        return null;
+    }
 }
