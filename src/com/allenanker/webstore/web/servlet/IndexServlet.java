@@ -14,7 +14,7 @@ public class IndexServlet extends BaseServlet {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         CategoryService categoryService = new CategoryServiceImp();
         List<Category> categoryList = categoryService.getAllCategories();
-        request.setAttribute("categoryList", categoryList);
+        request.setAttribute("allCats", categoryList);
         return "/jsp/index.jsp";
     }
 }
