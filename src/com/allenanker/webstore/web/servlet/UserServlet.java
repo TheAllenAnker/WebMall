@@ -42,4 +42,25 @@ public class UserServlet extends BaseServlet {
 
         return "/jsp/info.jsp";
     }
+
+    public String loginUI(HttpServletRequest request, HttpServletResponse response) {
+        return "/jsp/login.jsp";
+    }
+
+    public String userLogin(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User();
+        MyBeanUtils.populate(user, request.getParameterMap());
+        UserService userService = new UserServiceImp();
+        User actualUser = null;
+        try {
+            actualUser = userService.userLogin(user);
+            request.getSession().setAttribute("user", actualUser);
+            response.sendRedirect("/webmall/index.jsp");
+            return null;
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            request.setAttribute("msg", msg);
+            return "/jsp/login.jsp";
+        }
+    }
 }

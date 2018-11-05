@@ -5,10 +5,7 @@ import com.allenanker.webstore.domain.User;
 import com.allenanker.webstore.utils.JDBCUtils;
 import org.apache.commons.dbutils.QueryRunner;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDaoImp implements UserDao {
 
@@ -20,11 +17,7 @@ public class UserDaoImp implements UserDao {
 //                user.getTelephone(), user.getBirthday(), user.getSex(), user.getState(), user.getCode()};
 //        qr.update(sql, params);
         // the above code using c3p0 does not work yet, so I am doing it in the simple way.
-        String url = "jdbc:mysql://localhost:3306/store_40";
-        String username = "root";
-        String password = "ASDFJKLP@189cf";
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(url, username, password);
+        Connection connection = JDBCUtils.getJDBCConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, user.getUid());
         statement.setString(2, user.getUsername());
@@ -39,5 +32,29 @@ public class UserDaoImp implements UserDao {
         statement.executeUpdate();
         statement.close();
         connection.close();
+    }
+
+    @Override
+    public User userLogin(User user) throws Exception {
+        String sql = "SELECT * FROM user WHERE username=? AND password=?";
+        Connection connection = JDBCUtils.getJDBCConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet rs = null;
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        rs = preparedStatement.executeQuery();
+        boolean flag = false;
+        User returnUser = null;
+        if (rs.next()) {
+            flag = true;
+            returnUser = new User();
+            user.setUsername(user.getUsername());
+            user.setPassword(user.getPassword());
+        }
+        rs.close();
+        preparedStatement.close();
+        connection.close();
+
+        return flag ? returnUser : null;
     }
 }

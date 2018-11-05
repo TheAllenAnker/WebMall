@@ -1,9 +1,6 @@
 package com.allenanker.webstore.utils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import javax.sql.DataSource;
 
@@ -12,6 +9,19 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class JDBCUtils {
     private static ComboPooledDataSource ds = new ComboPooledDataSource("webmall");
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
+    private static final String url = "jdbc:mysql://localhost:3306/store_40";
+    private static final String username = "root";
+    private static final String password = "ASDFJKLP@189cf";
+    private static Connection connection;
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 从线程中获取连接
@@ -127,11 +137,7 @@ public class JDBCUtils {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            System.out.println(getConnection());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static Connection getJDBCConnection() {
+        return connection;
     }
 }

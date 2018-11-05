@@ -14,4 +14,15 @@ public class UserServiceImp implements UserService {
         UserDao userDao = new UserDaoImp();
         userDao.userRegist(user);
     }
+
+    @Override
+    public User userLogin(User user) throws Exception {
+        UserDao userDao = new UserDaoImp();
+        User returnUser = userDao.userLogin(user);
+        if (returnUser == null) {
+            throw new RuntimeException("Account name or password is incorrect.");
+        } else {
+            return user;
+        }
+    }
 }
