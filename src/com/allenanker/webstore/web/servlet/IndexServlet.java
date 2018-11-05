@@ -1,17 +1,13 @@
 package com.allenanker.webstore.web.servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import com.allenanker.webstore.web.base.BaseServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-public class IndexServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+public class IndexServlet extends BaseServlet {
+    @Override
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        return "/jsp/index.jsp";
     }
 }

@@ -34,19 +34,19 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="${pageContext.request.contextPath}/img/ad/1.jpg">
+                    <img src="${pageContext.request.contextPath}/img/1.jpg">
                     <div class="carousel-caption">
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="${pageContext.request.contextPath}/img/ad/2.jpg">
+                    <img src="${pageContext.request.contextPath}/img/2.jpg">
                     <div class="carousel-caption">
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="${pageContext.request.contextPath}/img/ad/3.jpg">
+                    <img src="${pageContext.request.contextPath}/img/3.jpg">
                     <div class="carousel-caption">
 
                     </div>

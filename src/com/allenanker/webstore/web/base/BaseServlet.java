@@ -16,6 +16,10 @@ public class BaseServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         String method = request.getParameter("method");
+        if (method == null || method.equals("") || method.trim().equals("")) {
+            method = "execute";
+        }
+
         String path = null;
 
         Class<? extends BaseServlet> thisClass = this.getClass();
@@ -33,4 +37,9 @@ public class BaseServlet extends HttpServlet {
             request.getRequestDispatcher(path).forward(request, response);
         }
     }
+
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        return null;
+    }
+
 }
