@@ -8,16 +8,15 @@ import com.allenanker.webstore.service.UserService;
 import java.sql.SQLException;
 
 public class UserServiceImp implements UserService {
+    UserDao userDao = new UserDaoImp();
 
     @Override
     public void userRegist(User user) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDaoImp();
         userDao.userRegist(user);
     }
 
     @Override
     public User userLogin(User user) throws Exception {
-        UserDao userDao = new UserDaoImp();
         User returnUser = userDao.userLogin(user);
         if (returnUser == null) {
             throw new RuntimeException("Account name or password is incorrect.");

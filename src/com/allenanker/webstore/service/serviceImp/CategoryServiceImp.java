@@ -9,9 +9,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CategoryServiceImp implements CategoryService {
+    CategoryDao categoryDao = new CategoryDaoImp();
+
     @Override
     public List<Category> getAllCategories() throws SQLException {
-        CategoryDao categoryDao = new CategoryDaoImp();
         return categoryDao.getAllCategories();
     }
 }
