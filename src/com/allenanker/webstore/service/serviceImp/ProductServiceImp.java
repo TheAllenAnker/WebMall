@@ -2,6 +2,7 @@ package com.allenanker.webstore.service.serviceImp;
 
 import com.allenanker.webstore.dao.ProductDao;
 import com.allenanker.webstore.dao.daoImp.ProductDaoImp;
+import com.allenanker.webstore.domain.PageModel;
 import com.allenanker.webstore.domain.Product;
 import com.allenanker.webstore.service.ProductService;
 
@@ -24,5 +25,15 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Product findProductByPid(String pid) throws SQLException {
         return productDao.findProductByPid(pid);
+    }
+
+    @Override
+    public PageModel findProductsWithCidAndPage(String cid, int currNum) throws SQLException {
+        int totalRecords = productDao.findTotalRecords(cid);
+        PageModel pm = new PageModel(currNum, totalRecords, 12);
+        List<Product> products = productDao.findProductsWithCidAndPage(cid, pm.getStartIndex(), pm.getPageSize());
+        pm.setList(products);
+        pm.setUrl("");
+        return pm;
     }
 }

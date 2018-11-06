@@ -84,7 +84,8 @@
     $(function () {
         $.post("${pageContext.request.contextPath}/CategoryServlet", {"method": "findAllCats"}, function (dt) {
             $.each(dt, function (i, obj) {
-                var li = "<li><a href='#'>" + obj.cname + "</a></li>";
+                var li = "<li><a href='${pageContext.request.contextPath}/ProductServlet?" +
+                "method=findProductsWithCidAndPage&num=1&cid=" + obj.cid + "'>" + obj.cname + "</a></li>";
                 $("#myUL").append(li);
             });
 

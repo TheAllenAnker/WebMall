@@ -1,5 +1,6 @@
 package com.allenanker.webstore.service;
 
+import com.allenanker.webstore.domain.PageModel;
 import com.allenanker.webstore.domain.Product;
 
 import java.sql.SQLException;
@@ -11,4 +12,6 @@ public interface ProductService {
     List<Product> findNews() throws SQLException;
 
     Product findProductByPid(String pid) throws SQLException;
+
+    PageModel findProductsWithCidAndPage(String cid, int currNum) throws SQLException;
 }
