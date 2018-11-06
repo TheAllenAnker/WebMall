@@ -20,4 +20,9 @@ public class ProductServiceImp implements ProductService {
     public List<Product> findNews() throws SQLException {
         return productDao.findNews();
     }
+
+    @Override
+    public Product findProductByPid(String pid) throws SQLException {
+        return productDao.findProductByPid(pid);
+    }
 }
