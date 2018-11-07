@@ -23,6 +23,10 @@
         <servlet-name>ProductServlet</servlet-name>
         <servlet-class>com.allenanker.webstore.web.servlet.ProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.allenanker.webstore.web.servlet.CartServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
@@ -43,5 +47,9 @@
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
         <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/CartServlet</url-pattern>
     </servlet-mapping>
 </web-app>
