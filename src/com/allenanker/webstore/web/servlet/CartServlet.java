@@ -32,4 +32,21 @@ public class CartServlet extends BaseServlet {
 
         response.sendRedirect("/webmall/jsp/cart.jsp");
     }
+
+    public void delCartItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        String pid = request.getParameter("pid");
+        cart.removeCartItem(pid);
+        request.getSession().setAttribute("cart", cart);
+
+        response.sendRedirect("/webmall/jsp/cart.jsp");
+    }
+
+    public void clearCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        cart.clearCart();
+        request.getSession().setAttribute("cart", cart);
+
+        response.sendRedirect("/webmall/jsp/cart.jsp");
+    }
 }
