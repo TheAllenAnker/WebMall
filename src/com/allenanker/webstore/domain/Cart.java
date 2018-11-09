@@ -19,7 +19,7 @@ public class Cart {
         }
     }
 
-    public Collection getCartItems() {
+    public Collection<CartItem> getCartItems() {
         return itemMap.values();
     }
 

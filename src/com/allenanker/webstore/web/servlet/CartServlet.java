@@ -49,4 +49,8 @@ public class CartServlet extends BaseServlet {
 
         response.sendRedirect("/webmall/jsp/cart.jsp");
     }
+
+    public void saveOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    }
 }
