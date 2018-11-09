@@ -26,7 +26,7 @@
 
 	<body>
 
-	<jsp:include page="/jsp/header.jsp"></jsp:include>
+	<jsp:include page="/jsp/header.jsp"/>
 
 		<div class="container">
 			<div class="row">
@@ -45,7 +45,7 @@
 								<th>数量</th>
 								<th>小计</th>
 							</tr>
-						<c:forEach items="${order.list}" var="orderItem">	
+						<c:forEach items="${order.orderItems}" var="orderItem">
 							<tr class="active">
 								<td width="60" width="40%">
 									<input type="hidden" name="id" value="22">
